@@ -13,7 +13,7 @@ class Welcome extends StatefulWidget {
 }
 
 class _WelcomeState extends State<Welcome> {
-  PageController pageController = PageController();
+  PageController pageController = PageController(initialPage: 0);
 
   @override
   Widget build(BuildContext context) {
@@ -38,21 +38,21 @@ class _WelcomeState extends State<Welcome> {
                         "Next",
                         "First See Learning",
                         "Forget about a for of paper all knowledge in one learning",
-                        "image One"),
+                        "assets/images/reading.png"),
                     _page(
                         1,
                         context,
                         "Next",
                         "Connect with Every one",
                         "Always keep in with your tutor & friend.Let,s get connect it ",
-                        "image One"),
+                        "assets/images/boy.png"),
                     _page(
                         1,
                         context,
                         "Get Started",
                         "Always Fascinated Learning",
                         "Anywhere, anytime. The time is at your discretion so study whenever you want.",
-                        "image One"),
+                        "assets/images/man.png"),
                   ],
                 ),
                 Positioned(
@@ -71,7 +71,7 @@ class _WelcomeState extends State<Welcome> {
                             duration: const Duration(milliseconds: 200),
                             curve: Curves.ease,
                           );
-                          setState(() {});
+                           // setState(() {});
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(left: 5.0),
@@ -109,7 +109,7 @@ class _WelcomeState extends State<Welcome> {
         SizedBox(
           width: 345.w,
           height: 345.w,
-          child: Text(imageUrl),
+          child: Image.asset(imageUrl,fit: BoxFit.cover,),
         ),
         Container(
           child: Text(
@@ -128,28 +128,41 @@ class _WelcomeState extends State<Welcome> {
             style: TextStyle(color: Colors.black),
           ),
         ),
-        Container(
-          margin: EdgeInsets.only(top: 100.h, left: 25.w, right: 25.w),
-          width: 325.w,
-          height: 50.h,
-          decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.circular(15.w),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.3),
-                  spreadRadius: 1,
-                  blurRadius: 2,
-                  offset: Offset(10, 10),
-                )
-              ]),
-          child: Center(
-            child: Text(
-              buttonName,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 16.sp,
-                  fontWeight: FontWeight.normal),
+        GestureDetector(
+          onTap: (){
+            if(index<3){
+              pageController.animateToPage(
+                index,
+                duration: const Duration(milliseconds: 1000),
+                curve: Curves.decelerate,
+              );
+            }else{
+
+            }
+            },
+          child: Container(
+            margin: EdgeInsets.only(top: 100.h, left: 25.w, right: 25.w),
+            width: 325.w,
+            height: 50.h,
+            decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(15.w),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.3),
+                    spreadRadius: 1,
+                    blurRadius: 2,
+                    offset: Offset(10, 10),
+                  )
+                ]),
+            child: Center(
+              child: Text(
+                buttonName,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.normal),
+              ),
             ),
           ),
         )
